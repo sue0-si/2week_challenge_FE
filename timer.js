@@ -8,7 +8,7 @@ function startTimer() {
     seconds = parseInt(document.getElementById('seconds').value) || 0;
 
     if (hours > 60 || minutes > 60 || seconds > 60) {
-        alert("time input should be less than 60")
+        alert("Time input should be less than 60")
         return;
     } else if (hours < 0 || minutes < 0 || seconds < 0) {
         alert("Time should be over 1 second")

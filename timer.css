@@ -1,5 +1,5 @@
 body{
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin-top: 5%;
     display: flex;
     text-align: center;
@@ -23,6 +23,7 @@ body{
 }
 button {
     margin: 10px;
+    height: 2em;
     background-color: antiquewhite;
     border-radius: 10%;
     border-color: antiquewhite;

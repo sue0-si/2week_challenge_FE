@@ -1,39 +1,57 @@
 let timer;
-let seconds = 0;
-let minutes = 0;
-let hours = 0;
+let remaining;
+let hours, minutes, seconds = 0;
 
 function startTimer() {
+    hours = parseInt(document.getElementById('hours').value) || 0;
+    minutes = parseInt(document.getElementById('minutes').value) || 0;
+    seconds = parseInt(document.getElementById('seconds').value) || 0;
+
+    if (hours > 60 || minutes > 60 || seconds > 60) {
+        alert("time input should be less than 60")
+        return;
+    } else if (hours < 0 || minutes < 0 || seconds < 0) {
+        alert("Time should be over 1 second")
+        return;
+    }
+    
+    document.getElementById('input').style.display = 'none';
+    document.getElementById('displayed').style.display = 'block';
+    
     timer = setInterval(() => {
-        seconds++;
-        if (seconds === 60) {
-            seconds = 0;
-            minutes++;
+        if (seconds != 0) {
+            seconds--;
+            displayTime();
+        } else {
+            if (minutes != 0) {
+                minutes--;
+                seconds = 59;
+            } else {
+                if (hours != 0) {
+                    hours--;
+                    minutes = 59;
+                }
+            }  
         }
-        if (minutes === 60) {
-            minutes = 0;
-            hours++;
-        }
-    displayTime();
+        displayTime();
     }, 1000);
 }
 
 function stopTimer() {
     clearInterval(timer);
+    displayTime();
 }
 
 function resetTimer() {
     clearInterval(timer);
-    seconds = 0;
-    minutes = 0;
-    hours = 0;
-    displayTime();
+    document.getElementById('input').style.display = 'flex';
+    document.getElementById('input').style.flexDirection = 'row';
+    document.getElementById('displayed').style.display = 'none';
+
 }
 
 function displayTime() {
-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    document.getElementById('timer').innerText = `${hours} : ${formattedMinutes} : ${formattedSeconds}`;
+    document.getElementById('timer').innerHTML = `${hours} : ${minutes} : ${seconds}`;
 }
 
 document.getElementById('startButton').addEventListener('click', startTimer);

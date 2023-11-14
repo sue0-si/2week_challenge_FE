@@ -1,14 +1,13 @@
 body{
+    font-family: 'Arial', sans-serif;
     margin-top: 5%;
     display: flex;
-    justify-content: center;
+    text-align: center;
     flex-direction: column;
     align-items: center;
 }
-p {
+#title {
     font-size: 30px;
-    display: flex;
-    justify-content: center;
     color: #a64100;
 }
 #buttons {
@@ -29,4 +28,18 @@ button {
     border-color: antiquewhite;
     border-style: groove;
     color: #a64100;
+}
+#input{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+input {
+    width: 20%;
+    border-style: none;
+    text-align: center;
+}
+#timer {
+    font-size: 3em;
 }

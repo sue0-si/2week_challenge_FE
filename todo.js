@@ -8,7 +8,7 @@ function addTask() {
     const priority = priorityInput.value;
 
     if (task.trim() === "") {
-        alert("할 일을 입력하세요.");
+        alert("할 일을 작성하세요.");
         return;
     }
     tasks.push({ task, priority, completed: false });
@@ -35,8 +35,7 @@ function uploadTasks() {
             checkbox.checked = task.completed;
             checkbox.addEventListener("change", () => toggleCompletion(task));
             
-            const textContent = document.createTextNode(`${task.task} - ${task.priority}`);
-            
+            const textContent = document.createTextNode(`${task.task}  ---  ${task.priority}`);
             const editButton = document.createElement("button");
             editButton.innerHTML = "수정";
             editButton.addEventListener("click", () => editTask(task));

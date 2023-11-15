@@ -1,1 +1,1 @@
-# 2week_challenge_FE - day1
+# 2week_challenge_FE

@@ -2,7 +2,7 @@ let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
 let memos = [];
-let cellDates = [];
+let selectedDate;
 
 function renderCalender(year, month) {
     const currentLast = new Date(year, month + 1, 0);  // 이번달의 마지막 날짜
@@ -45,32 +45,21 @@ function renderCalender(year, month) {
             }
             cell.innerText = dates[dayCounter];
             cell.classList.add('dayClass');
+            cell.setAttribute('data-date', `${currentMonth + 1}월 ${cell.innerText}일`)
             cell.setAttribute('data-number', dayCounter.toString())
             
-            let cellDate = new Date(year, month, 1 + j + i * 7);
-            cell.setAttribute('data-number', cellDate.getTime()); // 숫자로 날짜 저장
-            cellDates.push(cellDate.getTime()); // cellDates 배열에 추가
-            
             cell.addEventListener('click', () => {
-                showMemoForCell(cell);
+                openPopup(cell.dataset.date);
+                selectedDate = cell.dataset.number;
             });
             dayCounter++;
         }
     }
 }
 
-function showMemoForCell(cell) {
-    let cellIdentifier = cell.dataset.number;
-    let existingMemo = memos[cellIdentifier];
-
-    if (existingMemo) {
-        document.getElementById('existingMemoContent').innerText = existingMemo;
-        document.getElementById('existingMemo').style.display = 'block';
-        document.getElementById('memo').style.display = 'none';
-    } else {
-        document.getElementById('existingMemo').style.display = 'none';
-        document.getElementById('memo').style.display = 'block';
-    }
+function openPopup(date) {
+    document.getElementById('selectedDate').innerText = date;
+    document.getElementById('memo').style.display = 'block';
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -108,10 +97,7 @@ function addMemo() {
 
 function updateMemo() {
     const memosContainer = document.getElementById('memos');
-    const existingMemoContent = document.getElementById('existingMemoContent');
-    
     memosContainer.innerHTML = '';
-    memos.push(document.getElementById('memoInput').value);
 
     memos.forEach((memo, index) => {
         const memoContainer = document.createElement('div');
@@ -120,10 +106,6 @@ function updateMemo() {
                                         <button onclick="editMemo(${index})">수정</button>
                                         <button onclick="deleteMemo(${index})">삭제</button>`;
         memosContainer.appendChild(memoContainer);
-
-        const existingMemoItem = document.createElement('li');
-        existingMemoItem.innerText = memo;
-        existingMemoContent.appendChild(existingMemoItem);
     });
 
     document.getElementById('memo').style.display = 'none';
@@ -139,14 +121,10 @@ function editMemo(index) {
     }
 }
 function deleteMemo(index) {
-    memos[index] = '';
+    memos.splice(index, 1);
     updateMemo();
-    const memoContainers = document.querySelectorAll('.memo-container');
-    if (memoContainers.length > index) {
-        const deletedMemoContainer = memoContainers[index];
-        deletedMemoContainer.parentNode.removeChild(deletedMemoContainer);
-    }
 }
+
 function closePopup() {
     document.getElementById('memoInput').value = '';
     document.getElementById('memo').style.display = 'none';

@@ -157,10 +157,13 @@ function updateMemo() {
 }
 
 function editMemo(index) {
-    const memo = memos[index];
-    const newMemo = prompt("수정할 내용을 입력하세요:", memo);
+    // 선택된 날짜에 대한 메모를 가져옴
+    const memosForSelectedDate = memoData[selectedDate] || [];
+    // 선택된 인덱스의 메모를 가져옴
+    const selectedMemo = memosForSelectedDate[index];
+    const newMemo = prompt("수정할 내용을 입력하세요:", selectedMemo);
     if (newMemo !== null) {
-        memos[index] = newMemo;
+        memosForSelectedDate[index] = newMemo;
         updateMemo();
     }
 }

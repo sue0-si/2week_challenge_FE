@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="calender.css"
-    <title>Calender</title>
 </head>
 <body>
     <h2>Calender</h2>
-    <button id="prev" onclick="previousMonth()">
-        <span class="material-symbols-outlined">arrow_back_ios</span>
-    </button>
-    <p id="month-year"></p>
-    <button id="next" onclick="nextMonth()">
-        <span class="material-symbols-outlined">arrow_forward_ios</span>
-    </button>
+    <div id="subtitle">
+        <button id="prev" onclick="previousMonth()">
+            <span class="material-symbols-outlined">arrow_back_ios</span>
+        </button>
+        <p id="month-year"></p>
+        <button id="next" onclick="nextMonth()">
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
+        </button>
+    </div>
+    
     <table id="calender">
         <thread>
             <tr>
@@ -34,11 +37,17 @@
     <div id="memo">
         <h3>Memo</h3>
         <textarea id="memoInput"></textarea>
-        <button onclick="saveMemo()">Save Memo</button>
+        <button onclick="addMemo()">Add</button>
         <button onclick="closePopup()">Close</button>
     </div>
 
-    <div id="memoList"></div>
+    <div id="memoList">
+        <ul id="memos"></ul>
+    </div>
+
+    <div id="existingMemo">
+        <ul id="existingMemoContent"></ul>
+    </div>
     
 </body>
     <script src="calender.js"></script>

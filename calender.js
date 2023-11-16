@@ -1,7 +1,8 @@
 let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
-let memoCount = 0;
+let memos = [];
+let cellDates = [];
 
 function renderCalender(year, month) {
     const currentLast = new Date(year, month + 1, 0);  // 이번달의 마지막 날짜
@@ -26,7 +27,7 @@ function renderCalender(year, month) {
     }
     const dates = lastDates.concat(thisDates, nextDates);
 
-    document.getElementById('month-year').innerHTML = `${year} ${month + 1}`;
+    document.getElementById('month-year').innerHTML = `${year}. ${month + 1}`;
 
     const firstDayIndex = dates.indexOf(1);
     const lastDayIndex = dates.lastIndexOf(currentLastDate);
@@ -44,11 +45,31 @@ function renderCalender(year, month) {
             }
             cell.innerText = dates[dayCounter];
             cell.classList.add('dayClass');
+            cell.setAttribute('data-number', dayCounter.toString())
+            
+            let cellDate = new Date(year, month, 1 + j + i * 7);
+            cell.setAttribute('data-number', cellDate.getTime()); // 숫자로 날짜 저장
+            cellDates.push(cellDate.getTime()); // cellDates 배열에 추가
+            
             cell.addEventListener('click', () => {
-                document.getElementById('memo').style.display = 'block';
+                showMemoForCell(cell);
             });
             dayCounter++;
         }
+    }
+}
+
+function showMemoForCell(cell) {
+    let cellIdentifier = cell.dataset.number;
+    let existingMemo = memos[cellIdentifier];
+
+    if (existingMemo) {
+        document.getElementById('existingMemoContent').innerText = existingMemo;
+        document.getElementById('existingMemo').style.display = 'block';
+        document.getElementById('memo').style.display = 'none';
+    } else {
+        document.getElementById('existingMemo').style.display = 'none';
+        document.getElementById('memo').style.display = 'block';
     }
 }
 
@@ -74,22 +95,59 @@ function nextMonth() {
     renderCalender(currentYear, currentMonth)
 }
 
-function saveMemo() {
+function addMemo() {
     const memoInput = document.getElementById('memoInput').value;
+
     if (memoInput.trim() === '') {
         alert('메모를 입력해주세요!!')
-    } else {
-        memoCount++;
-        const memo = document.createElement('div');
-        memo.innerHTML = `<p>${memoInput}</p><button onclick="loadMemo(${memoCount})">불러오기</button>`;
-        document.getElementById('memoList').appendChild(memo);
-        document.getElementById('memoInput').value = '';
+        return;
     }
+    memos.push(memoInput);
+    updateMemo();
 }
 
+function updateMemo() {
+    const memosContainer = document.getElementById('memos');
+    const existingMemoContent = document.getElementById('existingMemoContent');
+    
+    memosContainer.innerHTML = '';
+    memos.push(document.getElementById('memoInput').value);
+
+    memos.forEach((memo, index) => {
+        const memoContainer = document.createElement('div');
+        memoContainer.classList.add('memo-container');
+        memoContainer.innerHTML = `<p>${memo}</p>
+                                        <button onclick="editMemo(${index})">수정</button>
+                                        <button onclick="deleteMemo(${index})">삭제</button>`;
+        memosContainer.appendChild(memoContainer);
+
+        const existingMemoItem = document.createElement('li');
+        existingMemoItem.innerText = memo;
+        existingMemoContent.appendChild(existingMemoItem);
+    });
+
+    document.getElementById('memo').style.display = 'none';
+    document.getElementById('memoInput').value = '';
+}
+
+function editMemo(index) {
+    const memo = memos[index];
+    const newMemo = prompt("수정할 내용을 입력하세요:", memo);
+    if (newMemo !== null) {
+        memos[index] = newMemo;
+        updateMemo();
+    }
+}
+function deleteMemo(index) {
+    memos[index] = '';
+    updateMemo();
+    const memoContainers = document.querySelectorAll('.memo-container');
+    if (memoContainers.length > index) {
+        const deletedMemoContainer = memoContainers[index];
+        deletedMemoContainer.parentNode.removeChild(deletedMemoContainer);
+    }
+}
 function closePopup() {
     document.getElementById('memoInput').value = '';
     document.getElementById('memo').style.display = 'none';
 }
-
-

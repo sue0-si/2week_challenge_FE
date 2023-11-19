@@ -9,5 +9,7 @@ target website: https://miniintern.com/
 ### Things to improve
 - animation (mouse hover, scroll, etc)
 - use media query for different device characteristics and screen size
+- refactor css file
+- might be better to use React.js?
 
 ### Changelog

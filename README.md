@@ -6,3 +6,9 @@
   - START button to start countdown: Countdown operates in hours, minutes, and seconds (the area for entering hours, minutes, and seconds disappears).
   - STOP button stops countdown.
   - RESET button resets the timer to 0, and the area for entering hours, minutes, and seconds appears.
+ 
+### Things to improve
+- design: font, animation
+- add stopwatch feature
+
+### Changelog

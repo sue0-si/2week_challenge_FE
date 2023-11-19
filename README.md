@@ -11,4 +11,8 @@
   - Each tasks can be catagorized into completed / incompleted using checkbox.
 - (optional) User can sort the list into ascending / decending order.
 
+### Things to improve
+- Emphasize the priority with icon or font color
+- Sorting feature into ascending / decending order
 
+### Changelog

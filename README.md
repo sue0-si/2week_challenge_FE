@@ -7,3 +7,6 @@
 - improvement of day5 carousel
   - Images automatically slide every 2 seconds.
   - At the end of the slide, the images loop back to the first one
+
+### Difference between day5
+- used setInterval() to show the next image within 2 seconds.

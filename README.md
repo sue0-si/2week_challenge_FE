@@ -1,4 +1,4 @@
-# day7: add a carousel in a clone page
+# day7: Add a carousel in a clone page
 
 ### Requirement
 - Attach the created slides during day5 & day6 to the day4 clone page.

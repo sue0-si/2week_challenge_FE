@@ -6,7 +6,7 @@
 
 ### Improvements
 - added a section which has a carousel
-- worked on media query for header - need back ups
+- worked on media query for header - need a back-up
 
 ### Things to do
 - header, footer improvement

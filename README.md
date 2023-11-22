@@ -13,3 +13,5 @@ target website: https://miniintern.com/
   - might be better to use React.js?
 
 ### Changelog
+- (11/22/2023) day7: added a carousel for automatic image slide
+  - https://github.com/sue0-si/2week_challenge_FE/tree/day7

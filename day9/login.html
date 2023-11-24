@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
     <title>Login page</title>
 </head>
 <body>
     <div class="loginBox">
         <form class="input-field" id="signUp">
             <h2>Sign Up</h2>
-            <input id="signUpId" name="userId" placeholder="set the id" required>
-            <input type="password" id="signUpPassword" name="password" placeholder="set the password" required>
-            <input type="button" value="sign up" onclick="signUp()"></input>
+            <input id="signUpId" class="textBox" name="userId" placeholder="set the id" required>
+            <input type="password" class="textBox" id="signUpPassword" name="password" placeholder="set the password" required>
+            <input type="button" class="button" value="sign up" onclick="signUp()"></input>
         </form>
         <form class="input-field" id="login">
             <h2>Login</h2>
-            <input id="userId" name="userId" placeholder="enter the id" required>
-            <input type="password" id="password" name="password" placeholder="enter the password" required>
-            <input type="button" value="login" onclick="login()"></input>
-            
+            <input id="userId" class="textBox" name="userId" placeholder="id" required>
+            <input type="password" class="textBox" id="password" name="password" placeholder="password" required>
+            <input type="button" class="button" value="login" onclick="login()"></input>
         </form>
     </div>
     

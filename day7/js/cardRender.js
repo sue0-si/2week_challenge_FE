@@ -1,4 +1,4 @@
-import { intern } from './card';
+import { intern } from './card.js';
 
 const internList = document.querySelector('.intern-grid');
 
